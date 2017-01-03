@@ -11,14 +11,21 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.github.peterwippermann.junit4.parameterizedsuite.ParameterContext;
 import com.github.peterwippermann.selenium.reuse.WebDriverHelper;
 
 @RunWith(Parameterized.class)
 public class ParameterizedGoToJavaLangTest {
 
-	@Parameters
+	@Parameters(name = "Browser #{index} - {0}")
 	public static Iterable<WebDriver> produceBrowserInstances() {
-		return Collections.singletonList(WebDriverHelper.startChrome());
+		if (ParameterContext.isParameterSet()) {
+			Object[] parameter = ParameterContext.getParameter(Object[].class);
+			return Collections.singletonList((WebDriver) parameter[0]);
+		} else {
+			// If this test is run stand-alone, only run it in Chrome
+			return Collections.singletonList(WebDriverHelper.startChrome());
+		}
 	}
 
 	@Parameter
@@ -35,7 +42,7 @@ public class ParameterizedGoToJavaLangTest {
 
 		Thread.sleep(5000);
 
-		driver.quit();
+//		driver.quit();
 
 	}
 
