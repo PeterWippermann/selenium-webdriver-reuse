@@ -9,6 +9,6 @@ GUI test scenarios will typically model the customer journey as a series of test
 For test automation engineers this regularly poses the problem how to model the customer journey end-to-end: i.e. starting the browser once and execute a series of tests, while building up transient state (either in the application itself or in the browser, e.g. loaded URL or cookies) and keeping that state all over the simulated customer journey.
 
 ## Technical challenge
-The lifecycle of a browser instance is managed by an instance of a 'WebDriver' object. To share the browser's state between test cases the corresponding `WebDriver` instance has be made available to all these tests. The JUnit 4 framework does not support to share objects between tests out of the box.
+The lifecycle of a browser instance is managed by an instance of a 'WebDriver' object. To share the browser's state between test cases the corresponding `WebDriver` instance has to be made available to all of these tests. The JUnit 4 framework does not support sharing objects between tests out of the box.
 
 **This project showcases how to parameterise test cases and make the WebDriver a parameter for these tests. This way a single WebDriver instance can be maintained and shared between multiple tests.**
